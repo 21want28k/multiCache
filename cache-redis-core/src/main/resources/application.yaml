@@ -20,3 +20,4 @@ spring:
 multicache:
   redis:
     serializer: KryoRedisSerializer # KryoRedisSerializer,ProtostuffRedisSerializer,JacksonRedisSerializer,JdkRedisSerializer
+  plugins: HotKey,BigKey

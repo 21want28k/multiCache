@@ -13,4 +13,8 @@ public enum ExpireModeEnum {
     ExpireModeEnum(String description) {
         this.description = description;
     }
+
+    public String getDescription() {
+        return description;
+    }
 }

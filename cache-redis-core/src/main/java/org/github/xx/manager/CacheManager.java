@@ -2,6 +2,7 @@ package org.github.xx.manager;
 
 import org.github.xx.cache.Cache;
 import org.github.xx.conf.MultiCacheProperties;
+import org.github.xx.properties.PluginProperties;
 
 import java.util.Collection;
 
@@ -36,17 +37,19 @@ public interface CacheManager {
     Collection<String> getCacheNames();
 
     /**
-     * 通过手动放入配置类去创建容器
-     * @param name 容器{@link Cache}名称
+     * 通过手动放入配置类去创建容器，但是redis的配置还是依赖于spring boot的redisTemplate相关配置
+     *
+     * @param name                 容器{@link Cache}名称
      * @param multiCacheProperties 配置类
      * @return
      */
     Cache createCache(String name, MultiCacheProperties multiCacheProperties);
 
-    /**
-     * 通过spring boot application.yaml中的配置去创建
-     * @param name 容器的名字
-     * @return cache 对象
-     */
-    Cache createCache(String name);
+//    /**
+//     * 通过spring boot application.yaml中的配置去创建
+//     *
+//     * @param name 容器的名字
+//     * @return cache 对象
+//     */
+//    Cache createCache(String name);
 }

@@ -1,6 +1,6 @@
 package org.github.xx.cache;
 
-import com.alibaba.fastjson.JSON;
+import org.github.xx.plugins.MultiPluginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,12 +9,14 @@ public class MultiCache extends AbstractCache {
     private AbstractCache caffeine;
     private AbstractCache redisCache;
 
-    public MultiCache(String name, AbstractCache caffeine, AbstractCache redisCache) {
+    private MultiPluginManager pluginManager;
+
+    public MultiCache(String name, AbstractCache caffeine, AbstractCache redisCache, MultiPluginManager pluginManager) {
         super(name);
         this.caffeine = caffeine;
         this.redisCache = redisCache;
+        this.pluginManager = pluginManager;
     }
-
 
 
     @Override
@@ -26,9 +28,10 @@ public class MultiCache extends AbstractCache {
         }
 
         // 再查二级缓存
-        result =  this.redisCache.get(key);
+        result = this.redisCache.get(key);
 
-        // 判断是不是热key
+        // 通过插件去判断key，比如缓存空key等，hotkey自动存进本地缓存中，大key问题
+        pluginManager.getFirst().handle(key);
         return null;
     }
 
