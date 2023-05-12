@@ -1,9 +1,9 @@
 package org.github.xx.enums;
 
 public enum SerialEnum {
-    Protostuff("ProtostuffRedisSerializer"),
-    Kyro("KryoRedisSerializer"),
-    Jackson("JacksonRedisSerializer"),
+    PROTOSTUFF("ProtostuffRedisSerializer"),
+    KYRO("KryoRedisSerializer"),
+    JACKSON("JacksonRedisSerializer"),
 
     JDK("JdkRedisSerializer");
 

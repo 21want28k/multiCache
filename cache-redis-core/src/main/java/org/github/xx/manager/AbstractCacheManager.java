@@ -14,6 +14,7 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * 公共的实现 {@link CacheManager}，也就是模板方法，把公共的部分抽出来。
+ *
  * @author 肖鑫
  */
 public abstract class AbstractCacheManager implements CacheManager {
@@ -45,7 +46,7 @@ public abstract class AbstractCacheManager implements CacheManager {
         synchronized (cacheContainer) {
             cache = this.cacheContainer.get(name);
             if (cache == null) {
-                Cache mutiCacheWrapper = new CacheWrapper(this.createCache(name));
+                Cache mutiCacheWrapper = new CacheWrapper(this.createCache(name, multiCacheProperties));
                 this.cacheContainer.put(name, mutiCacheWrapper);
                 return mutiCacheWrapper;
             }
