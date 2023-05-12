@@ -86,9 +86,5 @@ public abstract class AbstractCacheManager implements CacheManager {
             cache.put(key, value);
         }
 
-        @Override
-        public String getKey(String key) {
-            return cache.getKey(key);
-        }
     }
 }
